@@ -1,9 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from './components/routers'
+
 
 export default function App() {
   return (
-    <div>
-      <h1>Expensify App</h1>
-    </div>
+    <Router>
+     < AppRouter/>
+    </Router>
   );
 }
