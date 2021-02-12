@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ExpenseList from './ExpenseList'
 
 const Home = () => (
   <div>
-    <h1>
-      Home Master <Link to="/AddExpense">add</Link>
-    </h1>
+    <ExpenseList/>
   </div>
 );
 
