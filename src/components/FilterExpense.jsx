@@ -10,7 +10,6 @@ class FilterExpense extends React.Component {
     super(props);
     this.state = {
       text: "",
-      sortBy: "date",
       startDate: moment(),
       endDate: moment(),
       calenderFocusedInput: null
@@ -19,15 +18,14 @@ class FilterExpense extends React.Component {
   onChangeText = e => {
     const text = e.target.value;
     this.setState(() => ({ text }));
-    props.dispatch(filterByText(text));
+    props.dispatch(filterByText(this.state.text));
   };
 
   onChangeSortBy = e => {
     const sortBy = e.target.value;
-    this.setState(() => ({ sortBy }));
-    if (this.state.sortBy === "amount") {
+    if (sortBy === "amount") {
       props.dispatch(sortByAmount());
-    } else if (this.state.sortBy === "date") {
+    } else if (sortBy === "date") {
       props.dispatch(sortByDate());
     }
   };
@@ -49,9 +47,12 @@ class FilterExpense extends React.Component {
           value={this.state.text}
           onChange={this.onChangeText}
         />
-        <select value={this.state.sortBy} onChange={this.onChangeSortBy}>
-          <option value="amount">date</option>
-          <option value="date">amount</option>
+        <select
+          value={this.props.filters.sortBy}
+          onChange={this.onChangeSortBy}
+        >
+          <option value="date">date</option>
+          <option value="amount">amount</option>
         </select>
         <DateRangePicker
           startDate={this.state.startDate}
@@ -68,5 +69,5 @@ class FilterExpense extends React.Component {
     );
   }
 }
-
-export default connect()(FilterExpense);
+const mapStateToProps = state => ({ filters: state.filters });
+export default connect(mapStateToProps)(FilterExpense);
