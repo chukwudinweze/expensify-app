@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeExpense } from "./actions/expense";
 
 const ExpenseListItem = ({
@@ -11,7 +12,10 @@ const ExpenseListItem = ({
   note
 }) => (
   <div>
-    <p>{description}</p>
+    <Link to={`/EditExpense/${id}`}>
+      <p>{description}</p>
+    </Link>
+
     <p>{amount}</p>
     <p>{createdAt}</p>
     <p>{note}</p>
