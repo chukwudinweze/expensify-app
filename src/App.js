@@ -4,7 +4,7 @@ import AppRouter from "./components/routers";
 
 export default function App() {
   return (
-    <Router>
+    <Router
       <AppRouter />
     </Router>
   );
